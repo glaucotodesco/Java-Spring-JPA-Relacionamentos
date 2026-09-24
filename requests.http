@@ -1,0 +1,157 @@
+@host = http://localhost:8080
+
+### ============================================================
+### PERFIS
+### ============================================================
+
+### Listar perfis
+GET {{host}}/perfis
+
+### Buscar perfil
+GET {{host}}/perfis/1
+
+### Criar perfil
+POST {{host}}/perfis
+Content-Type: application/json
+
+{
+  "telefone": "11999999999",
+  "cidade": "São Paulo"
+}
+
+### Atualizar perfil
+PUT {{host}}/perfis/1
+Content-Type: application/json
+
+{
+  "telefone": "11988888888",
+  "cidade": "São Paulo"
+}
+
+### Excluir perfil
+# Use um perfil que não esteja associado a um aluno.
+DELETE {{host}}/perfis/3
+
+
+### ============================================================
+### ALUNOS
+### ============================================================
+
+### Listar alunos
+GET {{host}}/alunos
+
+### Buscar aluno
+GET {{host}}/alunos/1
+
+### Criar aluno
+POST {{host}}/alunos
+Content-Type: application/json
+
+{
+  "nome": "Beatriz",
+  "email": "beatriz@email.com"
+}
+
+### Atualizar aluno
+PUT {{host}}/alunos/1
+Content-Type: application/json
+
+{
+  "nome": "Ana Silva",
+  "email": "ana.silva@email.com"
+}
+
+### Associar perfil ao aluno
+# Ajuste os IDs de acordo com os registros criados.
+PUT {{host}}/alunos/3/perfil/3
+
+### Remover perfil do aluno
+DELETE {{host}}/alunos/3/perfil
+
+### Matricular aluno em curso
+POST {{host}}/alunos/1/cursos/3
+
+### Cursos do aluno
+GET {{host}}/alunos/1/cursos
+
+### Remover matrícula
+DELETE {{host}}/alunos/1/cursos/3
+
+### Excluir aluno
+DELETE {{host}}/alunos/3
+
+
+### ============================================================
+### INSTRUTORES
+### ============================================================
+
+### Listar instrutores
+GET {{host}}/instrutores
+
+### Buscar instrutor
+GET {{host}}/instrutores/1
+
+### Criar instrutor
+POST {{host}}/instrutores
+Content-Type: application/json
+
+{
+  "nome": "Roberta",
+  "email": "roberta@email.com"
+}
+
+### Atualizar instrutor
+PUT {{host}}/instrutores/1
+Content-Type: application/json
+
+{
+  "nome": "Carlos Souza",
+  "email": "carlos.souza@email.com"
+}
+
+### Cursos do instrutor
+GET {{host}}/instrutores/1/cursos
+
+### Excluir instrutor
+# Um instrutor com cursos associados retorna 409 Conflict.
+DELETE {{host}}/instrutores/3
+
+
+### ============================================================
+### CURSOS
+### ============================================================
+
+### Listar cursos
+GET {{host}}/cursos
+
+### Buscar curso
+GET {{host}}/cursos/1
+
+### Criar curso
+POST {{host}}/cursos
+Content-Type: application/json
+
+{
+  "nome": "Spring Data JPA",
+  "cargaHoraria": 24,
+  "instrutorId": 1
+}
+
+### Atualizar curso
+PUT {{host}}/cursos/1
+Content-Type: application/json
+
+{
+  "nome": "Java e Spring Atualizado",
+  "cargaHoraria": 44,
+  "instrutorId": 1
+}
+
+### Trocar instrutor
+PUT {{host}}/cursos/1/instrutor/2
+
+### Alunos do curso
+GET {{host}}/cursos/1/alunos
+
+### Excluir curso
+DELETE {{host}}/cursos/4
